@@ -1,59 +1,103 @@
 QWidget {
-    background-color:  # e0f7fa;
-    border-radius: 10px
-    font-family: Arial, sans-serif
+    background-color: #ffffff; /* Gris foncé pour le fond principal*/
+    font-family: Arial, sans-serif;
+    padding: 10px;
+}
+
+QGroupBox {
+    background-color: #ffffff; /* Blanc pour le fond des groupes */
+    border: 1px solid #a0a0a0; /* Bordure gris neutre */
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 25px; /* Augmenté pour un espacement intérieur plus généreux */
+    color: #212121; /* Texte anthracite */
+    font-size: 16px; /* Taille de texte augmentée */
+    font-weight: normal;
+}
+
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* Centrer les titres */
+    padding: 10px; /* Espacement autour du titre augmenté */
+    color: #ffffff; /* Texte anthracite pour les titres */
+    font-size: 22px; /* Taille de police augmentée pour les titres */
+    font-family: 'Urban Water', Arial, sans-serif; /* Police personnalisée ou alternative */
+    font-weight: bold;
+    background-color: #333333; /* Fond du titre en gris foncé */
+    border-radius: 5px; /* Arrondi pour le fond du titre */
 }
 
 QLabel {
-    font-size: 16px
-    color:  # 00796b;
+    font-size: 16px; /* Taille de police augmentée pour les étiquettes */
+    color: #000000; /* Texte noir sur fond blanc */
+    font-weight: normal;
+    margin-bottom: 10px; /* Espacement entre les étiquettes */
 }
 
-QLineEdit, QSpinBox, QComboBox, QSlider {
-    background-color:  # ffffff;
-    border: 2px solid  # 004d40;
-    border-radius: 5px
-    padding: 5px
-    font-size: 14px
+QLineEdit, QSpinBox, QComboBox {
+    background-color: #ffffff; /* Fond blanc pour les champs */
+    border: 2px solid #a0a0a0; /* Gris neutre pour les bordures */
+    border-radius: 5px;
+    padding: 10px; /* Augmenté pour plus de confort */
+    font-size: 16px; /* Taille de texte augmentée */
+    color: #000000; /* Texte noir */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-QLineEdit: focus, QSpinBox: focus, QComboBox: focus {
-    border: 2px solid  # 00796b;
+QLineEdit:focus, QSpinBox:focus, QComboBox:focus {
+    border: 2px solid #4caf50; /* Vert pour le focus */
+    background-color: #e8f5e9; /* Vert très clair */
 }
 
 QPushButton {
-    background-color:  # 00796b;
-    color:  # ffffff;
-    border: none
-    padding: 10px
-    border-radius: 10px
-    font-size: 16px
+    background-color: #4caf50; /* Vert pour les boutons */
+    color: #ffffff; /* Blanc pour le texte */
+    border: none;
+    padding: 15px 20px; /* Augmenté pour des boutons plus grands */
+    border-radius: 10px;
+    font-size: 18px; /* Taille de texte augmentée pour les boutons */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-QPushButton: hover {
-    background-color:  # 004d40;
+QPushButton:hover {
+    background-color: #388e3c; /* Vert foncé au survol */
+    transform: scale(1.05);
 }
 
-QPushButton: pressed {
-    background-color:  # 00251a;
+QPushButton:pressed {
+    background-color: #2e7d32; /* Vert encore plus foncé */
+    transform: scale(0.95);
 }
 
-QSlider:: groove: horizontal {
-    border: 1px solid  # 999999;
-    height: 8px
-    background:  # b2dfdb;
-    border-radius: 4px
+
+
+
+QSlider::groove:horizontal {
+    border: 1px solid #a0a0a0; /* Gris neutre */
+    height: 10px; /* Augmenté pour une meilleure visibilité */
+    background: #d0d0d0; /* Gris clair */
+    border-radius: 5px;
+    margin: 0px 15px;
 }
 
-QSlider:: handle: horizontal {
-    background:  # 00796b;
-    border: 1px solid  # 00796b;
-    width: 18px
-    height: 18px
-    border-radius: 9px
+QSlider::handle:horizontal {
+    background: #4caf50; /* Vert pour la poignée */
+    border: 1px solid #4caf50;
+    width: 20px; /* Taille augmentée pour la poignée */
+    height: 20px; /* Taille augmentée pour la poignée */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-QSlider:: sub-page: horizontal {
-    background:  # 004d40;
-    border-radius: 4px
+QSlider::handle:horizontal:hover {
+    background: #388e3c; /* Vert foncé */
+    transform: scale(1.2);
 }
+
+QSlider::sub-page:horizontal {
+    background: #4caf50; /* Vert pour la partie remplie */
+    border-radius: 5px;
+}
+
+
