@@ -2,7 +2,7 @@
 """
 Created on Sat Dec 14 12:55:42 2024
 
-@author: adaml
+@author: adaml jb
 """
 
 from PyQt5 import QtWidgets
