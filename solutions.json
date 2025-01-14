@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Récupération des eaux de pluie",
+        "description": "Installer un système de collecte des eaux pluviales pour les utiliser dans les toilettes ou pour l'arrosage des jardins.",
+        "conditions": {
+            "roof_water": true,
+            "rainfall": "suffisant"
+        },
+        "parameters": {
+            "tank_capacity": "roof_water"
+        }
+    },
+    {
+        "name": "Réutilisation des eaux grises",
+        "description": "Mettre en place un système de traitement des eaux grises pour les utiliser dans les toilettes.",
+        "conditions": {
+            "gray_water": true
+        },
+        "parameters": {
+            "gray_water_usage": "shower_water"
+        }
+    },
+    {
+        "name": "Toilettes à faible débit",
+        "description": "Installer des toilettes à faible débit pour réduire la consommation d'eau.",
+        "conditions": {},
+        "parameters": {}
+    },
+    {
+        "name": "Réduction du temps de douche",
+        "description": "Encourager les habitants à réduire leur temps de douche pour économiser de l'eau.",
+        "conditions": {},
+        "parameters": {}
+    },
+    {
+        "name": "Systèmes d'irrigation efficaces",
+        "description": "Utiliser des systèmes d'irrigation goutte-à-goutte pour minimiser l'utilisation d'eau pour les jardins.",
+        "conditions": {
+            "garden": true
+        },
+        "parameters": {
+            "irrigation_requirement": "garden_water"
+        }
+    }
+]

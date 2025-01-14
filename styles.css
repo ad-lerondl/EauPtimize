@@ -1,0 +1,59 @@
+QWidget {
+    background-color:  # e0f7fa;
+    border-radius: 10px
+    font-family: Arial, sans-serif
+}
+
+QLabel {
+    font-size: 16px
+    color:  # 00796b;
+}
+
+QLineEdit, QSpinBox, QComboBox, QSlider {
+    background-color:  # ffffff;
+    border: 2px solid  # 004d40;
+    border-radius: 5px
+    padding: 5px
+    font-size: 14px
+}
+
+QLineEdit: focus, QSpinBox: focus, QComboBox: focus {
+    border: 2px solid  # 00796b;
+}
+
+QPushButton {
+    background-color:  # 00796b;
+    color:  # ffffff;
+    border: none
+    padding: 10px
+    border-radius: 10px
+    font-size: 16px
+}
+
+QPushButton: hover {
+    background-color:  # 004d40;
+}
+
+QPushButton: pressed {
+    background-color:  # 00251a;
+}
+
+QSlider:: groove: horizontal {
+    border: 1px solid  # 999999;
+    height: 8px
+    background:  # b2dfdb;
+    border-radius: 4px
+}
+
+QSlider:: handle: horizontal {
+    background:  # 00796b;
+    border: 1px solid  # 00796b;
+    width: 18px
+    height: 18px
+    border-radius: 9px
+}
+
+QSlider:: sub-page: horizontal {
+    background:  # 004d40;
+    border-radius: 4px
+}
