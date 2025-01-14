@@ -46,7 +46,7 @@ def calculate_resources(input_data):
         Données traitables. Exple : la quantité d'eau de douche dispo (plutôt que le nombre de douches qui ne sert 'à rien').
 
     """
-    roof_area, num_residents, daily_shower_usage, location, is_garden = input_data['roof_area'], input_data['num_residents'], input_data['daily_shower_usage'], input_data['location'], input_data['garden']
+    roof_area, num_residents, conso_hyg, location, is_garden = input_data['roof_area'], input_data['nb_habitants'], input_data['conso_hyg'], input_data['location'], input_data['surf_veg'] > 0
 
     # Définition de la quantité de pluie en allant chercher dans la base de données
     query = QtSql.QSqlQuery()
@@ -61,8 +61,9 @@ def calculate_resources(input_data):
 
     # Calcul des ressources en fonction des variables récupérées
     # TODO mais plus tard c'est pas pressant : laisser la possibilité à l'utilisateur de modifier les constantes
+    # TODO mais plus tard : définir des constantes types daily_shower_usage, éventuellement fonction du pourcentage d'hygiène, etc.
     roof_water = roof_area * rainfall * 0.8 / 1000  # L'eau de pluie récupérée en litres
-    shower_water = num_residents * daily_shower_usage * 365  # L'eau de douche récupérée en litres
+    shower_water = num_residents * conso_hyg*100 * 50 * 365  # Exemple de calcul, par exemple 100% d'hygiène correspond à une douche par jour de 50L d'eau
     gray_water_available = shower_water > 0
 
     # ATTENTION : le nom des clés du dico doit être harmonisé avec le nom des conditions des solutions existantes (cf fonction de tri des solutions)
@@ -90,7 +91,8 @@ def calculate_needs(input_data):
         Données traitables. Exple : l'eau qu'il faut pour arroser le jardin (plutôt que sa surface qui ne sert 'à rien')..
 
     """
-    num_toilets, num_residents, daily_toilet_usage, garden, daily_garden_watering = input_data['num_toilets'], input_data['num_residents'], input_data['daily_toilet_usage'], input_data['garden'], input_data['daily_garden_watering']
+    daily_garden_watering, daily_toilet_usage = 3, input_data["conso_hyg"]*100*15  # Exemple
+    num_toilets, num_residents, garden = input_data['num_toilets'], input_data['nb_habitants'], input_data['surf_veg'] > 0
 
     # TODO mais plus tard il y a le tps : pouvoir modifier les constantes multipicatives
     toilet_water = num_toilets * num_residents * daily_toilet_usage * 365  # L'eau pour les toilettes en litres

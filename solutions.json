@@ -4,7 +4,7 @@
         "description": "Installer un système de collecte des eaux pluviales pour les utiliser dans les toilettes ou pour l'arrosage des jardins.",
         "conditions": {
             "roof_water": true,
-            "rainfall": "suffisant"
+            "rainfall": true
         },
         "covered_needs": {
             "toilet_water": 10
