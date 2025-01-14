@@ -6,6 +6,9 @@
             "roof_water": true,
             "rainfall": "suffisant"
         },
+        "covered_needs": {
+            "toilet_water": 10
+        },
         "parameters": {
             "tank_capacity": "roof_water"
         }
@@ -16,6 +19,9 @@
         "conditions": {
             "gray_water": true
         },
+        "covered_needs": {
+            "toilet_water": 10
+        },
         "parameters": {
             "gray_water_usage": "shower_water"
         }
@@ -24,12 +30,14 @@
         "name": "Toilettes à faible débit",
         "description": "Installer des toilettes à faible débit pour réduire la consommation d'eau.",
         "conditions": {},
+        "covered_needs": {},
         "parameters": {}
     },
     {
         "name": "Réduction du temps de douche",
         "description": "Encourager les habitants à réduire leur temps de douche pour économiser de l'eau.",
         "conditions": {},
+        "covered_needs": {},
         "parameters": {}
     },
     {
@@ -37,6 +45,9 @@
         "description": "Utiliser des systèmes d'irrigation goutte-à-goutte pour minimiser l'utilisation d'eau pour les jardins.",
         "conditions": {
             "garden": true
+        },
+        "covered_needs": {
+            "garden_water": 1
         },
         "parameters": {
             "irrigation_requirement": "garden_water"
