@@ -34,22 +34,7 @@ class InputForm(QtWidgets.QWidget):
         self.habitat_layout.addWidget(QtWidgets.QLabel("Nombre d'habitant :"))
         self.habitat_layout.addWidget(self.nb_habitants)
 
-        self.surf_toit = QtWidgets.QSpinBox()
-        self.surf_toit.setRange(0, 2147483647)
-        self.surf_toit.setValue(0)
-        self.habitat_layout.addWidget(QtWidgets.QLabel("Surface de toit :"))
-        self.habitat_layout.addWidget(self.surf_toit)
-
-        self.nb_toilettes = QtWidgets.QSpinBox()
-        self.nb_toilettes.setRange(0, 2147483647)
-        self.nb_toilettes.setValue(0)
-        self.habitat_layout.addWidget(QtWidgets.QLabel("Nombre de toilettes :"))
-        self.habitat_layout.addWidget(self.nb_toilettes)
-
-        self.location = QtWidgets.QComboBox()
-        self.habitat_layout.addWidget(QtWidgets.QLabel("Implantation géographique:"))
-        self.habitat_layout.addWidget(self.location)
-        self.fill_city_dropdown()
+        
 
         self.conso_hab = QtWidgets.QSpinBox()
         self.conso_hab.setRange(0, 2147483647)
@@ -198,6 +183,11 @@ class InputForm(QtWidgets.QWidget):
         self.pluie_section = QtWidgets.QGroupBox("Paramètres pluie")
         self.pluie_layout = QtWidgets.QVBoxLayout()
         self.pluie_layout.setSpacing(5)
+
+        self.location = QtWidgets.QComboBox()
+        self.pluie_layout.addWidget(QtWidgets.QLabel("Implantation géographique:"))
+        self.pluie_layout.addWidget(self.location)
+        self.fill_city_dropdown()
 
         self.precip = QtWidgets.QSpinBox()
         self.precip.setRange(0, 2147483647)
