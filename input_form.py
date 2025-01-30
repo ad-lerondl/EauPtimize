@@ -34,7 +34,11 @@ class InputForm(QtWidgets.QWidget):
         self.habitat_layout.addWidget(QtWidgets.QLabel("Nombre d'habitant :"))
         self.habitat_layout.addWidget(self.nb_habitants)
 
-        
+        self.nb_toilets = QtWidgets.QSpinBox()
+        self.nb_toilets.setRange(0, 2147483647)
+        self.nb_toilets.setValue(0)
+        self.habitat_layout.addWidget(QtWidgets.QLabel("Nombre de toilettes :"))
+        self.habitat_layout.addWidget(self.nb_toilets)
 
         self.conso_hab = QtWidgets.QSpinBox()
         self.conso_hab.setRange(0, 2147483647)
@@ -226,9 +230,9 @@ class InputForm(QtWidgets.QWidget):
 
     def get_input_data(self):
         return {
-            "num_toilets": self.nb_toilettes.value(),
+            "num_toilets": self.nb_toilets.value(),
             "location": self.location.currentText(),
-            "roof_area": self.surf_toit.value(),
+            "roof_area": self.surfpl.value(),
             "nb_habitants": self.nb_habitants.value(),
             "conso_hab": self.conso_hab.value(),
             "conso_hyg": self.conso_hyg.value(),
