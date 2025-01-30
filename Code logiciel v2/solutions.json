@@ -1,0 +1,60 @@
+[
+    {
+        "name": "Récupération des eaux de pluie",
+        "description": "Installer un système de collecte et de traitement des eaux pluviales pour les utiliser dans les toilettes ou pour l'arrosage des jardins.",
+        "conditions": {"pluie": true},
+        "traitement": "Lampes UV+Filtres à sable",
+        "installation_cost": 12,
+        "maintenance_cost": 2
+    },
+    
+    
+    
+    {
+        "name": "Réutilisation des eaux grises des douches",
+        "description": "Mettre en place un système de collecte et de traitement des eaux grises utilisées pour l'hygiène pour les utiliser dans les toilettes.",
+        "conditions": {"recup_hyg": true},
+        "traitement": "Filtration hydraloop",
+        "installation_cost": 10,
+        "maintenance_cost":0.5
+    },
+    
+    {
+        "name": "Réutilisation des eaux grises des machines à laver",
+        "description": "Mettre en place un système de collecte et de traitement des eaux grises utilisées par les machines à laver pour les utiliser dans les toilettes.",
+        "conditions": {"recup_vet": true},
+        "traitement": "Filtration hydraloop",
+        "installation_cost": 10,
+        "maintenance_cost": 0.50
+    },
+    {
+        "name": "Réutilisation des eaux grises des lave-vaisselles",
+        "description": "Mettre en place un système de collecte et de traitement des eaux grises utilisées par les lave-vaisselles pour les utiliser dans les toilettes.",
+        "conditions": {"recup_vai": true},
+        "traitement": "Filtration hydraloop",
+        "installation_cost":10,
+        "maintenance_cost": 0.50
+    },
+    
+    {
+        "name": "Traitement des pesticides",
+        "description": "Mettre en place un système de traitement des eaux grises utilisées pour l'hygiène pour les utiliser dans les toilettes.",
+        "conditions": {"pest": true},
+        "traitement": "Filtre à charbon",
+        "installation_cost": 70,
+        "maintenance_cost": 3
+    },
+    
+    {
+        "name": "Traitement des solvants organiques et hydrocarbures",
+        "description": "Mettre en place un système de traitement des eaux grises utilisées pour l'hygiène pour les utiliser dans les toilettes.",
+        "conditions": {"mic": true},
+        "traitement": "oxydation électrolytique",
+        "installation_cost": 100,
+        "maintenance_cost": 10
+    }
+    
+    
+    
+]
+
