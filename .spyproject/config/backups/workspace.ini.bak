@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['calculation.py', 'input_form.py', 'result_display.py', 'solutions.json', 'styles.css', 'main.py']
+recent_files = ['input_form.py', 'calculation.py', 'result_display.py', 'solutions.json', 'styles.css', 'main.py']
 
 [main]
 version = 0.2.0
