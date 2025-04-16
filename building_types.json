@@ -1,0 +1,310 @@
+{
+  "appartement": {
+    "name": "Appartements",
+    "description": "Immeuble résidentiel avec des habitations individuelles ou collectives.",
+    "fields": [
+      {"name": "nb_habitants", "label": "Nombre total d'habitants estimés", "type": "spinbox", "default": 0},
+      {"name": "nb_appartements", "label": "Nombre d'appartements", "type": "spinbox", "default": 0},
+      {"name": "nb_etages", "label": "Nombre d'étages", "type": "spinbox", "default": 1},
+      {"name": "surface_toit", "label": "Surface du toit (m²)", "type": "spinbox", "default": 0},
+      {"name": "jardin", "label": "Surface du jardin le cas échéant (en ares. 1a = 100 m²)", "type": "spinbox", "default": 0},
+      {
+        "name": "type_appartements",
+        "label": "Type global des appartements",
+        "type": "combobox",
+        "options": ["Studios", "T1-T2", "T3-T4", "T5 et plus", "HLM", "Résidence haut standing"],
+        "default": "T3-T4"
+      },
+      {
+        "name": "parties_communes",
+        "label": "Caractéristiques des parties communes",
+        "type": "list",
+        "subfields": [
+          {"name": "surface_commune", "label": "Superficie des parties communes (m²)", "type": "spinbox", "default": 0},
+          {"name": "nb_machine_a_laver", "label": "Nombre de machines à laver mises à disposition", "type": "spinbox", "default": 0},
+          {"name": "nb_seche_linge", "label": "Nombre de sèche-linges mis à disposition", "type": "spinbox", "default": 0},
+          {"name": "nb_toilettes_communes", "label": "Nombre de toilettes communes (s'il y a lieu)", "type": "spinbox", "default": 0}
+        ]
+      },
+      {
+        "name": "foyers",
+        "optional": true,
+        "text_button": "Ajouter un foyer",
+        "label": "Caractéristiques types des appartements",
+        "type": "list",
+        "subfields": [
+          {"name": "surface_foyer", "label": "Surface moyenne de l'appartement (m²)", "type": "spinbox", "default": 0},
+          {"name": "nb_WC", "label": "Nombre moyen de toilettes", "type": "spinbox", "default": 1},
+          {"name": "nb_salles_de_bain", "label": "Nombre moyen de salles de bain", "type": "spinbox", "default": 1},
+          {"name": "is_cuisine", "label": "Présence d'une cuisine", "type": "checkbox", "default": true},
+          {"name": "is_baignoire", "label": "Présence d'une baignoire", "type": "checkbox", "default": false},
+          {"name": "nb_apparts", "label": "Nombre d'appartements avec ces caractéristiques", "type": "spinbox", "default": 0}
+        ]
+      },
+      {
+        "name": "espaces_exterieurs",
+        "label": "Éléments extérieurs utilisant potentiellement de l'eau",
+        "type": "list",
+        "subfields": [
+          {"name": "nb_balcons_arrosables", "label": "Nombre de balcons avec arrosage", "type": "spinbox", "default": 0},
+          {"name": "nb_jardins_privés", "label": "Nombre de jardins privatifs", "type": "spinbox", "default": 0},
+          {"name": "has_arrosage_automatique", "label": "Présence d’un arrosage automatique", "type": "checkbox", "default": false}
+        ]
+      },
+      {
+        "name": "usage_batiment",
+        "label": "Usage principal du bâtiment",
+        "type": "combobox",
+        "options": ["Résidentiel permanent", "Résidence secondaire", "Location saisonnière", "Mixte", "Autre"],
+        "default": "Résidentiel permanent"
+      }
+    ]
+  },
+
+  "bureaux": {
+    "name": "Bureaux",
+    "description": "Immeuble à usage professionnel comportant des espaces de travail, des salles de réunion et potentiellement des espaces communs.",
+    "fields": [
+      {"name": "nb_personnes", "label": "Nombre total de personnes présentes en moyenne par jour", "type": "spinbox", "default": 0},
+      {"name": "nb_bureaux", "label": "Nombre de bureaux ou d’unités indépendantes", "type": "spinbox", "default": 0},
+      {"name": "nb_etages", "label": "Nombre d'étages", "type": "spinbox", "default": 1},
+      {"name": "surface_totale", "label": "Surface totale de l’immeuble (m²)", "type": "spinbox", "default": 0},
+      {
+        "name": "type_activite",
+        "label": "Type d’activité principale",
+        "type": "combobox",
+        "options": ["Administratif", "Tertiaire (IT, finance…)", "Médical", "Co-working", "Mixte", "Autre"],
+        "default": "Administratif"
+      },
+      {
+        "name": "parties_communes",
+        "label": "Caractéristiques des parties communes",
+        "type": "list",
+        "subfields": [
+          {"name": "surface_commune", "label": "Superficie des parties communes (m²)", "type": "spinbox", "default": 0},
+          {"name": "nb_cuisinettes", "label": "Nombre de kitchenettes ou espaces repas", "type": "spinbox", "default": 0},
+          {"name": "nb_toilettes", "label": "Nombre total de toilettes", "type": "spinbox", "default": 0},
+          {"name": "nb_salles_reunion", "label": "Nombre de salles de réunion", "type": "spinbox", "default": 0}
+        ]
+      },
+      {
+        "name": "usage_eau_specifique",
+        "optional": true,
+        "text_button": "Ajouter une unité spécifique",
+        "label": "Utilisation spécifique de l’eau dans certaines unités (optionnel)",
+        "type": "list",
+        "subfields": [
+          {"name": "nb_unites_specifiques", "label": "Nombre d’unités concernées", "type": "spinbox", "default": 0},
+          {"name": "description_usage", "label": "Description de l’usage (ex : salle de soins, labo…)", "type": "lineedit", "default": ""},
+          {"name": "quantity", "label": "Quantité d'eau utilisé dans l'unité (L)", "type": "spinbox", "default": 0}
+        ]
+      },
+      {
+        "name": "espaces_exterieurs",
+        "label": "Éléments extérieurs utilisant potentiellement de l'eau",
+        "type": "list",
+        "subfields": [
+          {"name": "surface_espace_vert", "label": "Surface des espaces verts (en ares, 1a=100m²)", "type": "spinbox", "default": 0},
+          {"name": "has_arrosage_automatique", "label": "Présence d’un arrosage automatique", "type": "checkbox", "default": false},
+          {"name": "nb_terrasses", "label": "Nombre de terrasses extérieures", "type": "spinbox", "default": 0}
+        ]
+      },
+      {
+        "name": "occupation",
+        "label": "Type d’occupation du bâtiment",
+        "type": "combobox",
+        "options": ["Temps plein (jour)", "Temps partiel", "24h/24", "Week-end compris", "Autre"],
+        "default": "Temps plein (jour)"
+      }
+    ]
+  },
+
+  "maisons": {
+    "name": "Maisons individuelles",
+    "description": "Parcelle résidentielle composée de maisons individuelles, souvent avec jardin, parking et potentiellement des équipements collectifs.",
+    "fields": [
+      {"name": "nb_maisons", "label": "Nombre de maisons", "type": "spinbox", "default": 0},
+      {"name": "nb_habitants", "label": "Nombre total d'habitants estimés", "type": "spinbox", "default": 0},
+      {"name": "surface_totale", "label": "Surface totale de la parcelle (m²)", "type": "spinbox", "default": 0},
+      {
+        "name": "type_habitat",
+        "label": "Type global d’habitat",
+        "type": "combobox",
+        "options": ["Maison de village", "Pavillon", "Résidence secondaire", "Habitat social individuel", "Habitat haut de gamme"],
+        "default": "Pavillon"
+      },
+      {
+        "name": "caracteristiques_maisons",
+        "label": "Caractéristiques des maisons",
+        "optional": true,
+        "text_button": "Ajouter un type de maison",
+        "type": "list",
+        "subfields": [
+          {"name": "surface_maison", "label": "Surface de la maison (m²)", "type": "spinbox", "default": 0},
+          {"name": "nb_WC", "label": "Nombre de toilettes", "type": "spinbox", "default": 1},
+          {"name": "nb_salles_de_bain", "label": "Nombre de salles de bain", "type": "spinbox", "default": 1},
+          {"name": "has_baignoire", "label": "Présence d'une baignoire", "type": "checkbox", "default": false},
+          {"name": "has_cuisine_exterieure", "label": "Présence d'une cuisine d'été / extérieure", "type": "checkbox", "default": false},
+          {"name": "nb_etages", "label": "Nombre d'étages", "type": "spinbox", "default": 1},
+          {"name": "nb_maisons_concernees", "label": "Nombre de maisons avec ces caractéristiques", "type": "spinbox", "default": 0}
+        ]
+      },
+      {
+        "name": "espaces_extérieurs",
+        "label": "Éléments extérieurs utilisant de l'eau",
+        "type": "list",
+        "subfields": [
+          {"name": "nb_jardins", "label": "Nombre de maisons avec jardin", "type": "spinbox", "default": 0},
+          {"name": "surface_jardin_moyen", "label": "Surface moyenne d’un jardin (ares)", "type": "spinbox", "default": 0},
+          {"name": "has_arrosage_auto", "label": "Présence d’arrosage automatique dans certaines maisons", "type": "checkbox", "default": false},
+          {"name": "nb_piscines", "label": "Nombre de piscines privées", "type": "spinbox", "default": 0}
+        ]
+      },
+      {
+        "name": "equipements_communs",
+        "label": "Équipements collectifs éventuels",
+        "type": "list",
+        "subfields": [
+          {"name": "has_laverie", "label": "Présence d’une laverie collective", "type": "checkbox", "default": false},
+          {"name": "has_jardin_partage", "label": "Présence d’un jardin partagé ou verger collectif", "type": "checkbox", "default": false},
+          {"name": "has_reserve_eau_pluie", "label": "Présence d’une réserve d’eau de pluie collective", "type": "checkbox", "default": false}
+        ]
+      },
+      {
+        "name": "type_occupation",
+        "label": "Type d’occupation majoritaire",
+        "type": "combobox",
+        "options": ["Résidence principale", "Résidence secondaire", "Mixte"],
+        "default": "Résidence principale"
+      }
+    ]
+  },
+
+  "ecole": {
+    "name": "Établissement scolaire",
+    "description": "Bâtiment dédié à l’enseignement avec des salles de classe, des installations sanitaires, et éventuellement des équipements sportifs ou de restauration.\n Merci de remplir plusieurs fois le questionnaire pour chaque bâtiment présent dans l'infrastructure de l'école.",
+    "fields": [
+      {"name": "nb_eleves", "label": "Nombre d’élèves accueillis en journée", "type": "spinbox", "default": 0},
+      {"name": "internat", "label": "Présence d'un internat", "type": "checkbox", "default": false},
+      {"name": "nb_internes", "label": "Nombre d’élèves accueillis la nuit", "type": "spinbox", "default": 0},
+      {"name": "nb_personnel", "label": "Nombre de membres du personnel (enseignants, administration…)", "type": "spinbox", "default": 0},
+      {
+        "name": "batiment",
+        "label": "Bâtiment",
+        "optional": true,
+        "text_button": "Ajouter un bâtiment",
+        "type": "list",
+        "subfields":[
+          {"name": "nb_etages", "label": "Nombre d'étages", "type": "spinbox", "default": 1},
+          {"name": "surface_totale", "label": "Surface totale du bâtiment (m²)", "type": "spinbox", "default": 0},
+          {
+            "name": "niveau_scolaire",
+            "label": "Niveau scolaire",
+            "type": "combobox",
+            "options": ["Maternelle", "Primaire", "Collège", "Lycée", "Enseignement supérieur", "Mixte"],
+            "default": "Primaire"
+          },
+          {
+            "name": "sanitaires",
+            "label": "Sanitaires disponibles",
+            "type": "list",
+            "subfields": [
+              {"name": "nb_toilettes_eleves", "label": "Nombre de toilettes pour élèves", "type": "spinbox", "default": 0},
+              {"name": "nb_toilettes_personnel", "label": "Nombre de toilettes pour personnel", "type": "spinbox", "default": 0},
+              {"name": "nb_lavabos", "label": "Nombre de lavabos", "type": "spinbox", "default": 0},
+              {"name": "has_douches", "label": "Présence de douches (installations sportives)", "type": "checkbox", "default": false}
+            ]
+          },
+          {
+            "name": "cuisine_restauration",
+            "label": "Restauration scolaire",
+            "type": "list",
+            "subfields": [
+              {"name": "has_cantine", "label": "Présence d’une cantine", "type": "checkbox", "default": false},
+              {"name": "nb_repas_jour", "label": "Nombre moyen de repas servis par jour", "type": "spinbox", "default": 0},
+              {"name": "has_laverie_cuisine", "label": "Présence d’un espace de plonge / laverie", "type": "checkbox", "default": false}
+            ]
+          },
+          {
+            "name": "espaces_extérieurs",
+            "label": "Éléments extérieurs",
+            "type": "list",
+            "subfields": [
+              {"name": "surface_cour", "label": "Surface de la cour ou des espaces de jeu (m²)", "type": "spinbox", "default": 0},
+              {"name": "surface_espaces_verts", "label": "Surface des espaces verts (ares)", "type": "spinbox", "default": 0},
+              {"name": "has_arrosage_auto", "label": "Présence d’un arrosage automatique", "type": "checkbox", "default": false}
+            ]
+          },
+          {
+            "name": "activites_specifiques",
+            "label": "Activités à forte consommation éventuelle",
+            "type": "list",
+            "subfields": [
+              {"name": "has_salle_sport", "label": "Présence d’une salle de sport avec douches", "type": "checkbox", "default": false},
+              {"name": "has_laboratoires", "label": "Présence de laboratoires (sciences, technologie)", "type": "checkbox", "default": false}
+            ]
+          },
+          {
+            "name": "type_occupation",
+            "label": "Type d’occupation du bâtiment",
+            "type": "combobox",
+            "options": ["Jours scolaires uniquement", "Toute l’année (activités extra-scolaires)"],
+            "default": "Jours scolaires uniquement"
+          }]
+          }
+        ]
+  },
+
+  "espace_public": {
+    "name": "Espace public extérieur",
+    "description": "Parc, jardin public, place ou autre espace extérieur ouvert au public, nécessitant un entretien régulier incluant potentiellement des usages d’eau.",
+    "fields": [
+      {"name": "nom_espace", "label": "Nom ou désignation de l’espace public", "type": "lineedit", "default": ""},
+      {"name": "surface_totale", "label": "Surface totale de l’espace (m²)", "type": "spinbox", "default": 0},
+      {
+        "name": "type_espace",
+        "label": "Type d’espace",
+        "type": "combobox",
+        "options": ["Parc paysager", "Jardin de ville", "Place minérale", "Terrain de sport extérieur", "Autre"],
+        "default": "Parc paysager"
+      },
+      {
+        "name": "espaces_verts",
+        "label": "Caractéristiques végétalisées",
+        "type": "list",
+        "subfields": [
+          {"name": "surface_gazon", "label": "Surface de pelouse/gazon (m²)", "type": "spinbox", "default": 0},
+          {"name": "surface_massifs_fleuris", "label": "Surface des massifs fleuris (m²)", "type": "spinbox", "default": 0},
+          {"name": "surface_arbres", "label": "Nombre estimé d’arbres", "type": "spinbox", "default": 0},
+          {"name": "has_arrosage_auto", "label": "Présence d’un système d’arrosage automatique", "type": "checkbox", "default": false}
+        ]
+      },
+      {
+        "name": "equipements",
+        "label": "Équipements présents",
+        "type": "list",
+        "subfields": [
+          {"name": "nb_fontaines", "label": "Nombre de fontaines décoratives", "type": "spinbox", "default": 0},
+          {"name": "has_jeux_eau", "label": "Présence de jeux d’eau (brumisateurs, jets au sol…)", "type": "checkbox", "default": false},
+          {"name": "has_bloc_sanitaire", "label": "Présence de sanitaires publics", "type": "checkbox", "default": false}
+        ]
+      },
+      {
+        "name": "entretien",
+        "label": "Entretien et gestion",
+        "type": "list",
+        "subfields": [
+          {"name": "nb_interventions_arrosage_semaine", "label": "Nombre moyen d’arrosages/semaine en période sèche", "type": "spinbox", "default": 0},
+          {"name": "source_eau", "label": "Source principale utilisée pour l’arrosage", "type": "combobox", "options": ["Réseau potable", "Eau brute (puits, rivière…)", "Eau recyclée", "Inconnu"], "default": "Réseau potable"}
+        ]
+      },
+      {
+        "name": "frequentation",
+        "label": "Fréquentation",
+        "type": "combobox",
+        "options": ["Faible", "Modérée", "Élevée", "Très élevée"],
+        "default": "Modérée"
+      }
+    ]
+  }
+}

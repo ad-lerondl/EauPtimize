@@ -5,9 +5,11 @@ Created on Thu Dec 12 18:01:41 2024
 @author: adaml
 """
 
+
 from PyQt5 import QtWidgets, QtGui, QtCore
 import calculation
 import numpy as np
+from menu_widget import MenuWidget
 
 
 class ResultDisplay(QtWidgets.QWidget):
@@ -25,7 +27,20 @@ class ResultDisplay(QtWidgets.QWidget):
                 color: #00796b;
                 text-align: center;
             }
+            QPushButton {
+                background-color: #00796b;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 5px;
+            }
+            QPushButton:hover {
+                background-color: #004d40;
+            }
         """)
+
+        main_layout = QtWidgets.QVBoxLayout()
 
         self.scroll_area = QtWidgets.QScrollArea()
         self.scroll_area.setWidgetResizable(True)
@@ -49,28 +64,43 @@ class ResultDisplay(QtWidgets.QWidget):
 
         self.scroll_area.setWidget(self.scroll_content)
 
-        layout = QtWidgets.QVBoxLayout(self)
-        layout.addWidget(self.scroll_area)
-        self.setLayout(layout)
+        """self.back_button = QtWidgets.QPushButton("Back")
+        self.back_button.setObjectName("BackButton")
+        self.back_button.setFixedHeight(52)
+        main_layout.addWidget(self.back_button, alignment=QtCore.Qt.AlignCenter)"""
+
+        self.home_button = QtWidgets.QPushButton("Home")
+        self.home_button.setObjectName("BackButton")
+        self.home_button.setFixedHeight(52)
+        main_layout.addWidget(self.home_button, alignment=QtCore.Qt.AlignCenter)
+
+        """self.pdf_button = QtWidgets.QPushButton("Générer un pdf")
+        self.pdf_button.setObjectName("MainButton")
+        self.pdf_button.setFixedHeight(52)
+        main_layout.addWidget(self.pdf_button, alignment=QtCore.Qt.AlignCenter)"""
+
+        main_layout.addWidget(self.scroll_area)
+        self.setLayout(main_layout)
 
     def display_results(self, total_water_resources, total_water_needed, required_storage, solutions, savings):
-        result_text = f"Ressources en eau disponibles: {total_water_resources} litres\n"
-        result_text += f"Besoins en eau: {total_water_needed} litres\n"
-        result_text += f"Capacité de stockage requise: {required_storage} litres\n\n"
-        result_text += "Solutions Envisageables:\n"
+        result_text = f"<h2>Résultats</h2>"
+        result_text += f"<p><strong>Ressources en eau disponibles:</strong> {total_water_resources} litres</p>"
+        result_text += f"<p><strong>Besoins en eau:</strong> {total_water_needed} litres</p>"
+        result_text += f"<p><strong>Capacité de stockage requise:</strong> {required_storage} litres</p>"
+        result_text += "<h3>Solutions Envisageables:</h3>"
 
         for solution in solutions:
-            result_text += f"\n- {solution['name']}: {solution['description']}"
+            result_text += f"<p><strong>{solution['name']}:</strong> {solution['description']}</p>"
+            result_text += "<ul>"
             for param, value in solution["parameters"].items():
-                result_text += f"\n   - {param.replace('_', ' ').capitalize()}: {value} litres"
+                result_text += f"<li><strong>{param.replace('_', ' ').capitalize()}:</strong> {value} litres</li>"
+            result_text += "</ul>"
 
         self.result_label.setText(result_text)
 
-        # Vérifier et remplacer les NaN par zéro
         total_water_resources = 0 if np.isnan(total_water_resources) else total_water_resources
         total_water_needed = 0 if np.isnan(total_water_needed) else total_water_needed
 
-        # Mettre à jour et afficher les graphiques
         calculation.plot_results(total_water_resources, total_water_needed, required_storage, savings)
 
         self.water_pie_chart.setPixmap(QtGui.QPixmap('water_resources_vs_needs.png'))

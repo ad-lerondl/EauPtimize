@@ -1,0 +1,7 @@
+{
+  "daily_shower_usage": 50,
+  "daily_toilet_usage": 15,
+  "daily_garden_watering": 3,
+  "washing_machine_usage": 60,
+  "water_cost_per_liter": 0.002
+}

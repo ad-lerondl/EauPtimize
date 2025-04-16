@@ -1,0 +1,83 @@
+{
+    "Hors ERP Sensible": {
+      "eaux_grises": {
+        "interdit": [
+            "Usages alimentaires",
+            "Usages lies a l'hygiene corporelle"
+        ],
+        "declaration A+": [
+            "Alimentation des fontaines decoratives non destinees a la consommation humaine",
+            "Evacuation des excretas"
+          ],
+        "declaration A": [
+            "Nettoyage des surfaces exterieures dont le lavage des vehicules",
+            "Arrosage des toitures et murs vegetalises et des espaces verts a l'echelle du batiment/bassin d'ornement"
+          ],
+        "experimentation": [
+            "Lavage du linge",
+            "Nettoyage des sols en interieur",
+            "Arrosage des jardins potagers"
+          ]
+      },
+      
+      "eaux_de_pluie": {
+        "autorise": [
+            "Nettoyage des sols en interieur",
+            "Arrosage des jardins potagers",
+            "Alimentation des fontaines decoratives non destinees a la consommation humaine",
+            "Evacuation des excretas",
+            "Nettoyage des surfaces exterieures dont le lavage des vehicules",
+            "Arrosage des toitures et murs vegetalises et des espaces verts a l'echelle du batiment/bassin d'ornement"
+        ],
+        "interdit": [
+            "Usages alimentaires",
+            "Usages lies a l'hygiene corporelle"
+        ],
+        "declaration A+1": [
+            "Lavage du linge"
+          ]
+      }
+    },
+    "ERP Sensible": {
+        "eaux_grises": {
+            "autorise": [
+            
+            ],
+            "interdit": [
+                "Usages alimentaires",
+                "Usages lies a l'hygiene corporelle"
+            ],
+            "autorisation A+": [
+                "Alimentation des fontaines decoratives non destinees a la consommation humaine",
+                "Evacuation des excretas"
+              ],
+            "autorisation A": [
+                "Nettoyage des surfaces exterieures dont le lavage des vehicules",
+                "Arrosage des toitures et murs vegetalises et des espaces verts a l'echelle du batiment/bassin d'ornement"
+              ],
+            "experimentation": [
+                "Lavage du linge",
+                "Nettoyage des sols en interieur",
+                "Arrosage des jardins potagers"
+              ]
+          },
+          
+        "eaux_de_pluie": {
+            "autorise": [
+                "Nettoyage des sols en interieur",
+                "Arrosage des jardins potagers",
+                "Evacuation des excretas",
+                "Nettoyage des surfaces exterieures dont le lavage des vehicules",
+                "Arrosage des toitures et murs vegetalises et des espaces verts a l'echelle du batiment/bassin d'ornement"
+            ],
+            "interdit": [
+                "Usages alimentaires",
+                "Usages lies a l'hygiene corporelle"
+            ],
+            "declaration A+": [
+                "Lavage du linge",
+                "Alimentation des fontaines decoratives non destinees a la consommation humaine"
+              ]
+          }
+    }
+  }
