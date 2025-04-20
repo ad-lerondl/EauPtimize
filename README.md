@@ -1,6 +1,6 @@
 # EauPtimize
 
-EauPtimize est un outil de gestion des eaux usées qui aide à optimiser l'utilisation de l'eau en fonction des caractéristiques spécifiques des bâtiments. Il permet de simuler différents scénarios pour des types de bâtiments variés et de suggérer des solutions pour réduire la consommation d'eau.
+EauPtimize est un outil de gestion des eaux usées qui aide à optimiser l'utilisation de l'eau en fonction des caractéristiques spécifiques des bâtiments. Développé dans le cadre d'un projet de PAi avec l'entreprise UrbanWater, il permet de simuler différents scénarios pour des types de bâtiments variés et de suggérer des solutions pour réduire la consommation d'eau.
 
 ## Fonctionnalités
 
