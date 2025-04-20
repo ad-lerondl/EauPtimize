@@ -1,15 +1,28 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) [2025] [Adam Lérondel]
+#
+# Licensed under the Fair Source License, Version 0.9.6 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.fair.io/license
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """
 Created on Thu Dec 12 18:01:41 2024
 
-@author: adaml
+@author: Adam Lérondel
 """
 
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 import calculation
 import numpy as np
-from menu_widget import MenuWidget
 
 
 class ResultDisplay(QtWidgets.QWidget):
@@ -82,26 +95,34 @@ class ResultDisplay(QtWidgets.QWidget):
         main_layout.addWidget(self.scroll_area)
         self.setLayout(main_layout)
 
-    def display_results(self, total_water_resources, total_water_needed, required_storage, solutions, savings):
-        result_text = f"<h2>Résultats</h2>"
-        result_text += f"<p><strong>Ressources en eau disponibles:</strong> {total_water_resources} litres</p>"
-        result_text += f"<p><strong>Besoins en eau:</strong> {total_water_needed} litres</p>"
-        result_text += f"<p><strong>Capacité de stockage requise:</strong> {required_storage} litres</p>"
-        result_text += "<h3>Solutions Envisageables:</h3>"
+    def display_results(self, total_water_resources, total_water_needed, required_storage, solutions_avec_cout, all_solutions, savings, resources, needs):
+        result_text = """
+        <div style="text-align: center;">
+            <h2>Résultats</h2>
+            <p><strong>Ressources en eau disponibles:</strong> {:.2e} m³</p>
+            <p><strong>Besoins en eau (sont considérés les besoins légalement couvrables au vu des normes en vigueur):</strong> {:.2e} m³</p>
+            <p><strong>Capacité de stockage requise:</strong> {:.2e} m³</p>
+            <h3>Solutions Envisageables:</h3>
+        """.format(total_water_resources * 10**(-3), total_water_needed * 10**(-3), required_storage * 10**(-3))
 
-        for solution in solutions:
+        for solution in all_solutions:
             result_text += f"<p><strong>{solution['name']}:</strong> {solution['description']}</p>"
-            result_text += "<ul>"
-            for param, value in solution["parameters"].items():
-                result_text += f"<li><strong>{param.replace('_', ' ').capitalize()}:</strong> {value} litres</li>"
-            result_text += "</ul>"
+            # for param, value in solution["parameters"].items():
+            #     result_text += f"<li><strong>{param.replace('_', ' ').capitalize()}:</strong> {value * 10**(-3)} m³</li>"
+
+        result_text += "<h3>Solutions Retenues (au vu des coûts):</h3>"
+
+        for solution in solutions_avec_cout:
+            result_text += f"<p><strong>{solution['name']}:</strong> {solution['description']}</p>"
+
+        result_text += "</div>"
 
         self.result_label.setText(result_text)
 
         total_water_resources = 0 if np.isnan(total_water_resources) else total_water_resources
         total_water_needed = 0 if np.isnan(total_water_needed) else total_water_needed
 
-        calculation.plot_results(total_water_resources, total_water_needed, required_storage, savings)
+        calculation.plot_results(resources, needs, required_storage, savings)
 
         self.water_pie_chart.setPixmap(QtGui.QPixmap('water_resources_vs_needs.png'))
         self.cost_bar_chart.setPixmap(QtGui.QPixmap('cost_savings_vs_implementation_cost.png'))

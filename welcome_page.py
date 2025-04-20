@@ -1,18 +1,34 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) [2025] [Adam Lérondel]
+#
+# Licensed under the Fair Source License, Version 0.9.6 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.fair.io/license
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """
 Created on Tue Apr  8 21:08:25 2025
 
-@author: adaml
+@author: Adam Lérondel
 """
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 import os
 import json
+import sqlite3
 
 
 class WelcomePage(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.city_user = None
         self.initUI()
 
     def initUI(self):
@@ -65,7 +81,7 @@ class WelcomePage(QtWidgets.QWidget):
         button_layout = QtWidgets.QVBoxLayout()
         for label, text in buttons_name.items():
             self.buttons[label] = QtWidgets.QPushButton(text)
-            self.buttons[label].setFixedHeight(45)  # ✅ corrigé : plus de place pour le texte
+            self.buttons[label].setFixedHeight(45)
             button_layout.addWidget(self.buttons[label])
 
         main_layout.addLayout(button_layout)
@@ -82,7 +98,53 @@ class WelcomePage(QtWidgets.QWidget):
         centrale_logo.setAlignment(QtCore.Qt.AlignCenter)
         main_layout.addWidget(centrale_logo)
 
+        # --- Bouton discret pour base de données ---
+        # --- Barre de recherche de ville avec auto-complétion ---
+        search_layout = QtWidgets.QVBoxLayout()
+        self.search_input = QtWidgets.QLineEdit()
+        self.search_input.setPlaceholderText("Rechercher une ville...")
+        self.search_input.textChanged.connect(self.update_city_suggestions)
+        self.search_results = QtWidgets.QListWidget()
+        self.search_results.hide()
+        self.search_results.setMaximumHeight(100)
+        self.search_results.itemClicked.connect(self.city_selected)
+
+        search_layout.addWidget(self.search_input)
+        search_layout.addWidget(self.search_results)
+        main_layout.addLayout(search_layout)
+
         self.setLayout(main_layout)
+
+    def update_city_suggestions(self, text):
+        self.city_user = None
+        if len(text) < 3:
+            self.search_results.hide()
+            return
+
+        try:
+            conn = sqlite3.connect("pluviometrie_france.db")
+            cursor = conn.cursor()
+            cursor.execute("SELECT Villes FROM pluviometrie_villes_France WHERE Villes LIKE ? LIMIT 10", (text + '%',))
+            rows = cursor.fetchall()
+            conn.close()
+
+            self.search_results.clear()
+            for row in rows:
+                self.search_results.addItem(row[0])
+
+            if rows:
+                self.search_results.show()
+                if len(rows) == 1:
+                    self.city_user = rows[0][0]
+            else:
+                self.search_results.hide()
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "Erreur BDD", f"Erreur lors de la recherche :\n{e}")
+
+    def city_selected(self, item):
+        self.search_input.setText(item.text())
+        self.search_results.hide()
+        self.city_user = self.search_input.text()
 
 
 if __name__ == "__main__":

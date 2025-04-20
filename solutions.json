@@ -11,7 +11,8 @@
         },
         "parameters": {
             "tank_capacity": "roof_water"
-        }
+        },
+        "implementation_cost": 3000
     },
     {
         "name": "Réutilisation des eaux grises",
@@ -24,21 +25,24 @@
         },
         "parameters": {
             "gray_water_usage": "shower_water"
-        }
+        },
+        "implementation_cost": 5000
     },
     {
         "name": "Toilettes à faible débit",
         "description": "Installer des toilettes à faible débit pour réduire la consommation d'eau.",
         "conditions": {},
         "covered_needs": {},
-        "parameters": {}
+        "parameters": {},
+        "implementation_cost": 500
     },
     {
         "name": "Réduction du temps de douche",
         "description": "Encourager les habitants à réduire leur temps de douche pour économiser de l'eau.",
         "conditions": {},
         "covered_needs": {},
-        "parameters": {}
+        "parameters": {},
+        "implementation_cost": 0
     },
     {
         "name": "Systèmes d'irrigation efficaces",
@@ -51,6 +55,81 @@
         },
         "parameters": {
             "irrigation_requirement": "garden_water"
-        }
+        },
+        "implementation_cost": 1200
+    },
+    {
+        "name": "Station de traitement individuelle",
+        "description": "Installer une micro-station d'épuration domestique pour traiter et réutiliser l'eau grise et noire.",
+        "conditions": {
+            "household": true,
+            "space_available": true
+        },
+        "covered_needs": {
+            "garden_water": 10,
+            "toilet_water": 10
+        },
+        "parameters": {
+            "treatment_capacity": "daily_water_use"
+        },
+        "implementation_cost": 12000
+    },
+    {
+        "name": "Mur végétalisé filtrant",
+        "description": "Construire un mur végétalisé qui traite les eaux grises via phytoépuration, adapté aux maisons individuelles ou écoles.",
+        "conditions": {
+            "gray_water": true,
+            "space_available": true
+        },
+        "covered_needs": {
+            "garden_water": 5
+        },
+        "parameters": {
+            "surface_area": "gray_water_volume"
+        },
+        "implementation_cost": 7000
+    },
+    {
+        "name": "Réservoir souterrain multiflux",
+        "description": "Aménager un réservoir souterrain à compartiments pour stocker différentes eaux usées traitées et les redistribuer selon les besoins.",
+        "conditions": {
+            "construction_heavy": true
+        },
+        "covered_needs": {
+            "toilet_water": 10,
+            "garden_water": 10
+        },
+        "parameters": {
+            "volume_partition": "estimated_usage"
+        },
+        "implementation_cost": 18000
+    },
+    {
+        "name": "Filtration par biocharbon",
+        "description": "Installer un système de filtration à base de biocharbon pour traiter les eaux grises avant réutilisation.",
+        "conditions": {
+            "gray_water": true
+        },
+        "covered_needs": {
+            "toilet_water": 5
+        },
+        "parameters": {
+            "filter_lifespan": "gray_water_volume"
+        },
+        "implementation_cost": 2500
+    },
+    {
+        "name": "Réutilisation des eaux de piscine",
+        "description": "Récupérer et filtrer l'eau de piscine lors des vidanges pour l'arrosage ou le nettoyage extérieur.",
+        "conditions": {
+            "has_pool": true
+        },
+        "covered_needs": {
+            "garden_water": 5
+        },
+        "parameters": {
+            "available_pool_water": "pool_volume"
+        },
+        "implementation_cost": 1000
     }
 ]

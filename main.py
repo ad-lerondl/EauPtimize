@@ -1,8 +1,22 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) [2025] [Adam Lérondel]
+#
+# Licensed under the Fair Source License, Version 0.9.6 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.fair.io/license
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """
 Created on Sat Dec 14 12:55:42 2024
 
-@author: adaml
+@author: Adam Lérondel
 """
 
 from PyQt5 import QtWidgets
@@ -63,19 +77,20 @@ class MainWindow(QtWidgets.QWidget):
 
     def calculate_savings(self):
         input_data = self.input_form.get_input_data()
+        input_data['location'] = self.welcome_page.city_user
         resources = calculation.calculate_resources(input_data, self.input_form.building_type)
-        print(resources)
         needs = calculation.calculate_needs(input_data, self.input_form.building_type)
-        print(needs)
 
         total_water_resources = sum(list(resources.values()))
         total_water_needed = sum(list(needs.values()))
         required_storage = total_water_resources - total_water_needed if total_water_resources > total_water_needed else 0
 
-        solutions = calculation.suggest_solutions(total_water_resources, total_water_needed, resources, needs, self.input_form.building_type)
-        savings = calculation.calculate_savings(input_data, solutions, total_water_resources, total_water_needed, required_storage)
+        all_solutions = calculation.suggest_solutions(total_water_resources, total_water_needed, resources, needs, self.input_form.building_type)
+        savings = calculation.calculate_savings(input_data, all_solutions, total_water_resources, total_water_needed, required_storage)
+        solutions_avec_cout = calculation.viable_economic_solutions(all_solutions, savings)
+        savings = calculation.calculate_savings(input_data, solutions_avec_cout, total_water_resources, total_water_needed, required_storage)
 
-        self.result_display.display_results(total_water_resources, total_water_needed, required_storage, solutions, savings)
+        self.result_display.display_results(total_water_resources, total_water_needed, required_storage, solutions_avec_cout, all_solutions, savings, resources, needs)
 
         # Afficher la page des résultats
         self.stacked_widget.setCurrentWidget(self.result_display)

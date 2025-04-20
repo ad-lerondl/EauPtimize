@@ -261,6 +261,7 @@
     "fields": [
       {"name": "nom_espace", "label": "Nom ou désignation de l’espace public", "type": "lineedit", "default": ""},
       {"name": "surface_totale", "label": "Surface totale de l’espace (m²)", "type": "spinbox", "default": 0},
+      {"name": "roof_water", "label": "Surface de récupération d'eau de pluie (m²)", "type": "spinbox", "default": 0},
       {
         "name": "type_espace",
         "label": "Type d’espace",
